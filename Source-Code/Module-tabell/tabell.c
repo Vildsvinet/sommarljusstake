@@ -9,10 +9,10 @@ void TabellPaSkarmen( double kapital, int antalAr   )
 {
 	int ar ;
 
-	printf("\n èr     Saldo\n ==     =====\n");
+	printf("\n ÔøΩr     Saldo\n ==     =====\n");
 	for ( ar = 1; ar <= antalAr; ar++ ) {
 		kapital = NastaAr( kapital );
-		
+		//bananer √§r goda123
 		/* enheter i tabellen */
 		if ( -10 < kapital && kapital < 10 )
 			printf("%3d%11.2f kr\n", ar, ABS( kapital ));
@@ -22,7 +22,7 @@ void TabellPaSkarmen( double kapital, int antalAr   )
 			printf("%3d%11.2f h(hekto)kr\n", ar, (ABS( kapital ))/100);
 		else  
 			printf("%3d%11.2f kkr\n", ar, (ABS( kapital ))/1000);
-
+	
 	}
 	
 	return;
