@@ -10,7 +10,7 @@ function defaultRoute(){
 /*Check whether subpage is known, i e one of our views*/
 function routeKnownQ(){
     return(
-        ["#home"]           //add all hashes here
+        ["#home", "#about"]           //add all hashes here
             .find((knownRoute)=>{
                 return(knownRoute === window.location.hash)})
     )
@@ -34,6 +34,7 @@ function App(props){
     );
 
     if (window.location.hash ==="#home") return <div><HomeView/></div>
+    if (window.location.hash ==="#about") return <div><AboutView/></div>
 
     return <div>unexpected page</div>
 }
