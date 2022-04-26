@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="EN">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
+
+    <script src="js/views/loginView.js" type="text/jsx"></script>
+    <script src="js/views/homeView.js" type="text/jsx"></script>
+    <script src="js/views/aboutView.js" type="text/jsx"></script>
+
+    <script src="js/App.js" type="text/jsx"></script>
+    <script src="js/Model.js"></script>
+
+    <script src="reactjs/showPresenter.js" type="text/jsx"></script>
+    <script src="reactjs/loginPresenter.js" type="text/jsx"></script>
+    <script src="reactjs/homePresenter.js" type="text/jsx"></script>
+    <script src="reactjs/aboutPresenter.js" type="text/jsx"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
+    <script src="js/firebaseConfig.js"></script>
+    <script src="js/firebaseModel.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <title>Sommarljusstake</title>
 </head>
+
 <body>
-    <div id="app"> text </div>
+    <noscript>Please enable Javascript to run this app.</noscript>
+    <div id="app"></div>
 </body>
 
-<script src="homeView.js" type="text/jsx"></script>
-<script src="aboutView.js" type="text/jsx"></script>
-<script src="App.js" type="text/jsx"></script>
-
 <script type="text/jsx">
-    ReactDOM.render(<App />, document.getElementById("app"))
+    const myModel = new Model();
+    persistModel(myModel);
+
+    // Måste referera till användaren som inte laddads in vid det här laget...
+    firebase.database().ref("Model").once("value").then(() =>
+        ReactDOM.render(<App model = { myModel } />, document.getElementById("app"))
+    );
 </script>
 
 </html>
