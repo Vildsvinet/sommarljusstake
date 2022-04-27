@@ -28,3 +28,11 @@ button{
     margin-top: 100px;
 
 }
+
+.hidden {
+    display: none;
+}
+
+#hidden {
+    display: none;
+}
