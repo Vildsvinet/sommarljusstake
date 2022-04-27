@@ -3,6 +3,12 @@ class Model {
         this.observers = [];
         this.currentUser = null;
         this.currentUsername = null;
+        this.lightOn = false;
+    }
+
+    setLight(input) {
+        this.lightOn = input;
+        this.notifyObservers();
     }
 
     signInEmail(email, password) {
@@ -11,7 +17,7 @@ class Model {
                 // Signed in
                 let user = userCredential.user;
                 //console.log("User signed in")
-                //console.log(user);
+                console.log(user);
                 this.currentUser = user;
                 this.notifyObservers();
                 window.location.hash="#home";

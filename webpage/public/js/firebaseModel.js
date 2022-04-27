@@ -9,7 +9,7 @@ function persistModel(model) {
         if(loadingFromFirebase) return
         if(firebase.auth().currentUser)
             firebase.database().ref("users/" + firebase.auth().currentUser.uid).set({
-                // Data som ska till Firebase
+                lightStatus: model.lightOn
             })
     }
 
@@ -19,7 +19,7 @@ function persistModel(model) {
                 loadingFromFirebase= true;
                 try {
                     if(data.val()) {
-                        // Data som ska från Firebase
+                        model.setLight(data.val().lightStatus);
                     }
                 }
                 catch (e) {console.log(e)}

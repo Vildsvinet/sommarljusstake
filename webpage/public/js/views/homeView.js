@@ -1,9 +1,10 @@
 function HomeView(props){
-    return(
-        <div><center>
-            <button  onClick = {event => window.location.hash = "#about"} >
-                press this button to turn on the Sommarljusstake</button>
+    return <div>
+        <center>
+            <button  onClick = {() => window.location.hash = "#about"}>About us</button>
+            <button onClick = {() => props.setLight(true)}>ON</button>
+            <button onClick = {() => props.setLight(false)}>OFF</button>
         </center>
-        </div>
-    )
+    </div>
+
 }
