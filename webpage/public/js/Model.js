@@ -1,4 +1,4 @@
-module.exports = class Model {
+class Model {
     constructor(observers = []) {
         this.observers = [];
         this.currentUser = null;
