@@ -4,42 +4,80 @@
 #include <ctype.h>
 
 int * createMorseArray();
-int * msgToMorse(int * morseArray, char * msgArray, int msgLength);
+int * msgToMorse(int * morseArray, char * msgArray);
 
 char * getMsg();
 char * toLowerCase(char * str);
+void * sendMsg(int * morseMsg, int morseMsgLength);
+int getMorseLength(char * str);
 
-/*void morseToBlink(){
-
-}*/
-
-/*void stringToMorse(char* c, int length){
-    while (c++ <= length){
-        
-    }
-}*/
 
 int main(){
 
-     int * morseArray;
+    int * morseArray;
     morseArray = createMorseArray();
     
     char * msgArray;
     msgArray = getMsg();
-    int msgLength = 6; //this needs to be not hard coded
- 
+    
     char * msgLowCase = toLowerCase(msgArray);
     
- 
+    int msgMorseLength = getMorseLength(msgArray);
+  
     int * morseCode;
-    morseCode = msgToMorse(morseArray, msgLowCase, msgLength);
+    morseCode = msgToMorse(morseArray, msgLowCase);
  
+    
+    
+   sendMsg(morseCode, msgMorseLength);  
  
     return 0;
 }
 
+
+void * sendMsg(int * morseMsg, int len){
+    
+  
+    
+    int count = 0;
+    for (size_t i = 0; i < len; i++) {
+       
+        count++;
+      
+        if(morseMsg[i] == 0){
+            printf("%d", morseMsg[i]); //Turn on
+            sleep(1); //wait for 0.5 sec
+            printf(""); //Turn off
+			sleep(1);
+        } 
+        if(morseMsg[i] == 1){
+            printf("%d", morseMsg[i]); //Turn on
+            sleep(2); //wait for 1 sec
+            printf(""); //Turn off
+			sleep(1);
+        }  
+        if(morseMsg[i] == 2){
+			
+           sleep(3);//wait for 3 sec
+           i = i + 5 - count;
+           count = 0;
+        }
+        if (count == 5){
+            sleep(3);
+            count = 0;
+        }
+        
+    }
+    
+   
+    
+    
+}
+
+
+
 char * getMsg(){  //This is a place holder depening on how we get msg
-    char *msg = "ABCDE";
+    char *msg = "ABCDEF";
     return msg;
 }
 
@@ -55,8 +93,13 @@ char * toLowerCase(char * str){  //This is a place holder depening on how we get
     return lower;
 } 
 
+int getMorseLength(char * str){
+    
+    return 5 * strlen(str);;
+}
 
-int * msgToMorse(int * morseArray, char * str, int msgLength){  //place holder
+
+int * msgToMorse(int * morseArray, char * str){  //place holder
 
    
   
@@ -64,11 +107,11 @@ int * msgToMorse(int * morseArray, char * str, int msgLength){  //place holder
     int hold;
     size_t len = strlen(str);
     char *morseMsg = calloc(len+1*5, sizeof(char));
-    printf("%s \n", str);
+   
 
     for (size_t i = 0; i < len; i++) {
         hold = str[i];
-        printf("%d \n", hold);
+        
         
         if (hold == 32){
             
@@ -91,12 +134,9 @@ int * msgToMorse(int * morseArray, char * str, int msgLength){  //place holder
        
     }
     
-    for (int i = 0; i < 25; i++){
-        printf("%d ", morseMsg[i]);
-        
-    }
+ 
     
-    printf("test 1");
+
   
   
     return morseArray;
