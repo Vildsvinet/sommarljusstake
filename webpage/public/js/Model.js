@@ -5,6 +5,7 @@ class Model {
         this.currentUsername = null;
         this.lightOn = false;
         this.morseText = "yeshello";
+        this.dimmer = 10;
     }
 
     setLight(input) {
@@ -60,6 +61,11 @@ class Model {
 
     setMorse(plaintext){
         this.morseText = plaintext;
+        this.notifyObservers();
+    }
+
+    setDimmer(input){
+        this.dimmer = input;
         this.notifyObservers();
     }
 
