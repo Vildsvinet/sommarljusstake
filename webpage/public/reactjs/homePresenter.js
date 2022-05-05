@@ -6,13 +6,13 @@ function HomePresenter(props){
         function obs() {
             setLightStatus(props.model.lightOn); setCurrentUser(props.model.currentUser);
         }
-        
+
         props.model.addObserver(obs);
-                                      
+
         return function() {
             props.model.removeObserver(obs);
-        }                               
-    }, [props.model])                      
+        }
+    }, [props.model])
 
     return <React.Fragment>
         <HomeView
@@ -20,6 +20,7 @@ function HomePresenter(props){
             setLight = {x => props.model.setLight(x)}
             currentUser = {currentUser}
             signOut = {() => props.model.signOut()}
+            // morseText = {props.model.morseText}
         />
     </React.Fragment>
 

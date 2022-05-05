@@ -4,6 +4,7 @@ class Model {
         this.currentUser = null;
         this.currentUsername = null;
         this.lightOn = false;
+        this.morseText = "yeshello";
     }
 
     setLight(input) {
@@ -56,4 +57,11 @@ class Model {
             try{
                 cb()}catch (e) {console.log(e)}},0)})
     }
+
+    //////////
+    setMorse(plaintext){
+        this.morseText = plaintext;
+        this.notifyObservers();
+    }
+
 }
