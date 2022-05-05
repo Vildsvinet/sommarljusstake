@@ -10,6 +10,8 @@ function LoginView(props) {
             props.loginCurrentUser()
         }} type="submit">Login
         </button>
+        <br/>
+        <button onClick = {() => window.location.hash = "#home"}>Back to home</button>
     </div>
 
 

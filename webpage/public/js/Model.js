@@ -21,7 +21,7 @@ class Model {
                 console.log(user);
                 this.currentUser = user;
                 this.notifyObservers();
-                window.location.hash="#home";
+                window.location.hash="#controls";
             })
             .catch((error) => {
                 let errorCode = error.code;
