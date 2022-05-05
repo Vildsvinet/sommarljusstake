@@ -9,7 +9,9 @@ function persistModel(model) {
         if(loadingFromFirebase) return
         if(firebase.auth().currentUser)
             firebase.database().ref("users/" + firebase.auth().currentUser.uid).set({
-                lightStatus: model.lightOn
+                lightStatus: model.lightOn,
+                morseText: model.morseText
+
             })
     }
 
@@ -20,6 +22,7 @@ function persistModel(model) {
                 try {
                     if(data.val()) {
                         model.setLight(data.val().lightStatus);
+                        model.setMorse(data.val().morseText);
                     }
                 }
                 catch (e) {console.log(e)}
@@ -28,7 +31,7 @@ function persistModel(model) {
         else console.log("Can't load UID")
     }
 
-   firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
         if(user) {
             model.currentUser = firebase.auth().currentUser;
             setDataFromFirebase();
