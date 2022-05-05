@@ -1,8 +1,10 @@
 function ControlsPresenter(props){
+    const [lightStatus, setLightStatus]=React.useState(props.model.lightOn);
     const [currentMorseText, setCurrentMorseText] = React.useState(props.model.morseText);
 
     React.useEffect( function() {
         function obs() {
+            setLightStatus(props.model.lightOn);
 
         }
 
@@ -16,6 +18,8 @@ function ControlsPresenter(props){
     return (
         <React.Fragment>
             <ControlsView
+                lightStatus = {lightStatus}
+                setLight = {x => props.model.setLight(x)}
                 morseText = {currentMorseText}
                 onMorseText = {text => setCurrentMorseText(text)}
 
