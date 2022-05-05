@@ -19,7 +19,6 @@ button{
 
     /*width: 250px;*/
     /*height: 50px;*/
-    padding: 50px;
 
     border-radius: 12px;
     border: black;
@@ -34,7 +33,7 @@ button{
     text-decoration: none;
     text-shadow: 1px 1px black;
 
-    margin-top: 50px;
+    margin-top: 20px;
 
 }
 
