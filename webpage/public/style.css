@@ -26,7 +26,11 @@ button{
     text-shadow: 1px 1px black;
 
     margin-top: 50px;
+}
 
+button[disabled] {
+    background-color: gray;
+    colour: gray;
 }
 
 .hidden {

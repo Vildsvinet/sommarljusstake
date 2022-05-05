@@ -14,7 +14,6 @@ function HomeView(props){
     return <div>
         <center>
             <button id={sneaky} className="" onClick={() => window.location.hash="#login"}>Sign in</button>
-            <br/>
             <button id={reverseSneaky} className="" onClick={() => window.location.hash = "#controls"}>Controls</button>
             <br/>
             <button id={reverseSneaky} className="" onClick={() => props.signOut()}>Sign out</button>

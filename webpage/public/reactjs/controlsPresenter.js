@@ -22,6 +22,7 @@ function ControlsPresenter(props){
                 setLight = {x => props.model.setLight(x)}
                 morseText = {currentMorseText}
                 onMorseText = {text => setCurrentMorseText(text)}
+                setMorse = {()=> props.model.setMorse(currentMorseText)}
 
             />
         </React.Fragment>

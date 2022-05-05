@@ -58,7 +58,6 @@ class Model {
                 cb()}catch (e) {console.log(e)}},0)})
     }
 
-    //////////
     setMorse(plaintext){
         this.morseText = plaintext;
         this.notifyObservers();
