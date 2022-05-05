@@ -5,6 +5,7 @@ class Model {
         this.currentUsername = null;
         this.lightOn = false;
         this.morseText = "yeshello";
+        this.dimmer = 10;
     }
 
     setLight(input) {
@@ -21,7 +22,7 @@ class Model {
                 console.log(user);
                 this.currentUser = user;
                 this.notifyObservers();
-                window.location.hash="#home";
+                window.location.hash="#controls";
             })
             .catch((error) => {
                 let errorCode = error.code;
@@ -58,9 +59,13 @@ class Model {
                 cb()}catch (e) {console.log(e)}},0)})
     }
 
-    //////////
     setMorse(plaintext){
         this.morseText = plaintext;
+        this.notifyObservers();
+    }
+
+    setDimmer(input){
+        this.dimmer = input;
         this.notifyObservers();
     }
 
