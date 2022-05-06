@@ -10,7 +10,7 @@ function HomeView(props) {
     } else reverseSneaky = "hidden";
 
     return <div>
-        <img src={"midsommarljusstake.png"} alt={"logo"}/>
+        <img src={"midsommarljusstake.png"} alt={"logo"}/><br/>
 
         <button id={sneaky} className="" onClick={() => window.location.hash = "#login"}>sign in</button>
         <button id={reverseSneaky} className="" onClick={() => window.location.hash = "#controls"}>controls</button>
