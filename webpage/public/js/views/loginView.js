@@ -8,10 +8,9 @@ function LoginView(props) {
         <br/>
         <button className="" onClick={() => {
             props.loginCurrentUser()
-        }} type="submit">Login
-        </button>
+        }} type="submit">log in</button>
         <br/>
-        <button onClick = {() => window.location.hash = "#home"}>Back to home</button>
+        <button onClick={() => window.location.hash = "#home"}>back to home</button>
     </div>
 
 

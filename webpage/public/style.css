@@ -1,8 +1,15 @@
+html{
+    background-color: #202023;
+    color: whitesmoke;
+    font-family: "Courier New", cursive;
+}
+
 div{
     font-family: "Courier New", cursive;
     font-size: large;
     /*margin: 5px;*/
     align-content: center;
+    text-align: center;
 
 }
 
@@ -12,7 +19,6 @@ h1{
 
 img{
     padding: 20px;
-
 }
 
 button{
@@ -34,13 +40,15 @@ button{
     text-shadow: 1px 1px black;
 
 
-    margin-top: 50px;
+    margin: 10px;
+}
+
+input{
 }
 
 
 button[disabled] {
     background-color: gray;
-    colour: gray;
 }
 
 .hidden {
