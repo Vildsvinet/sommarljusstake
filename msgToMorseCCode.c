@@ -13,37 +13,21 @@ int getMorseLength(char * str);
 
 
 int main(){
-
     int * morseArray;
     morseArray = createMorseArray();
-    
     char * msgArray;
     msgArray = getMsg();
-    
     char * msgLowCase = toLowerCase(msgArray);
-    
     int msgMorseLength = getMorseLength(msgArray);
-  
     int * morseCode;
     morseCode = msgToMorse(morseArray, msgLowCase);
- 
-    
-    
-   sendMsg(morseCode, msgMorseLength);  
- 
+    sendMsg(morseCode, msgMorseLength);  
     return 0;
 }
-
-
 void * sendMsg(int * morseMsg, int len){
-    
-  
-    
     int count = 0;
-    for (size_t i = 0; i < len; i++) {
-       
+    for (size_t i = 0; i < len; i++) {   
         count++;
-      
         if(morseMsg[i] == 0){
             printf("%d", morseMsg[i]); //Turn on
             sleep(1); //wait for 0.5 sec
@@ -57,7 +41,6 @@ void * sendMsg(int * morseMsg, int len){
 			sleep(1);
         }  
         if(morseMsg[i] == 2){
-			
            sleep(3);//wait for 3 sec
            i = i + 5 - count;
            count = 0;
@@ -65,56 +48,31 @@ void * sendMsg(int * morseMsg, int len){
         if (count == 5){
             sleep(3);
             count = 0;
-        }
-        
+        }    
     }
-    
-   
-    
-    
 }
-
-
-
 char * getMsg(){  //This is a place holder depening on how we get msg
     char *msg = "ABCDEF";
     return msg;
 }
-
-
 char * toLowerCase(char * str){  //This is a place holder depening on how we get msg
      size_t len = strlen(str);
     char *lower = calloc(len+1, sizeof(char));
-
     for (size_t i = 0; i < len; ++i) {
         lower[i] = tolower((unsigned char)str[i]);
     }
-     
     return lower;
 } 
-
-int getMorseLength(char * str){
-    
+int getMorseLength(char * str){  
     return 5 * strlen(str);;
 }
-
-
 int * msgToMorse(int * morseArray, char * str){  //place holder
-
-   
-  
-  
     int hold;
     size_t len = strlen(str);
     char *morseMsg = calloc(len+1*5, sizeof(char));
-   
-
     for (size_t i = 0; i < len; i++) {
-        hold = str[i];
-        
-        
+        hold = str[i];        
         if (hold == 32){
-            
             morseMsg[i*5] = 1;
             morseMsg[(i*5)+1] = 1;
             morseMsg[(i*5)+2] = 0;
@@ -122,30 +80,16 @@ int * msgToMorse(int * morseArray, char * str){  //place holder
             morseMsg[(i*5)+4] = 1;
         }
         else{
-           
             morseMsg[(i*5)] = morseArray[(hold - 97)*5];
             morseMsg[(i*5)+1] = morseArray[(hold - 97)*5 + 1];
             morseMsg[(i*5)+2] = morseArray[(hold - 97)*5 + 2];
             morseMsg[(i*5)+3] = morseArray[(hold - 97)*5 + 3];
             morseMsg[(i*5)+4] = morseArray[(hold - 97)*5 + 4];
-            
         }
- 
-       
     }
-    
- 
-    
-
-  
-  
-    return morseArray;
-    
+  return morseArray;  
 }
-
-
 int * createMorseArray(){
-     
     static int asciiMorse[37][5] = {
     {0,1,2,2,2},
     {1,0,0,0,2},
@@ -183,7 +127,6 @@ int * createMorseArray(){
     {1,1,1,0,0},
     {1,1,1,1,0},
     {1,1,1,1,1},
-    {1,1,0,1,1}};  //this one is a space
-    
+    {1,1,0,1,1}};  //this one is a space 
     return asciiMorse;
 }
