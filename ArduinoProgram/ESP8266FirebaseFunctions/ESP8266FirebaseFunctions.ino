@@ -45,48 +45,13 @@ unsigned long sendDataPrevMillis = 0;
 void setup(){
   
   Serial.begin(115200);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting to Wi-Fi");
-  while (WiFi.status() != WL_CONNECTED){
-    Serial.print(".");
-    delay(300);
- }
   
-  Serial.println();
-  Serial.print("Connected with IP: ");
-  Serial.println(WiFi.localIP());
-  Serial.println();
+  wifiSetup();
 
-  /* Assign api key*/
-  config.api_key = API_KEY;
-
-  /* Assign the RealTime Database URL*/
-  config.database_url = DATABASE_URL;
-
-  /* Assign email and password for login*/
-  auth.user.email = USER_EMAIL;
-  auth.user.password = USER_PASSWORD;
-  
-  /* Sign up */
-  /*if (Firebase.signUp(&config, &auth, "", "")){
-    Serial.println("Connected to firebase");
-    signupOK = true;
-  }
-  else{
-    Serial.printf("%s\n", config.signer.signupError.message.c_str());
-  }*/
-
-  Firebase.begin(&config, &auth);
-  
-  /* Assign the callback function for the long running token generation task */
-  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
-  
-  Firebase.begin(&config, &auth);
-  Firebase.reconnectWiFi(true);
+  firebaseSetup();
 }
 
 void loop(){
-
 
   Serial.println(getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/dimmer"));
   delay(1000);
@@ -128,6 +93,49 @@ void sendAndGetStringTest(){
 void sendAndGetIntTest(){
   sendIntToFirebase("test/sendInt", 024);
   Serial.println(getIntFromFirebase("test/getInt"));
+}
+
+void wifiSetup(){
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED){
+    Serial.print(".");
+    delay(300);
+  }
+  
+  Serial.println();
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
+}
+
+void firebaseSetup(){
+  /* Assign api key*/
+  config.api_key = API_KEY;
+
+  /* Assign the RealTime Database URL*/
+  config.database_url = DATABASE_URL;
+
+  /* Assign email and password for login*/
+  auth.user.email = USER_EMAIL;
+  auth.user.password = USER_PASSWORD;
+  
+  /* Sign up */
+  /*if (Firebase.signUp(&config, &auth, "", "")){
+    Serial.println("Connected to firebase");
+    signupOK = true;
+  }
+  else{
+    Serial.printf("%s\n", config.signer.signupError.message.c_str());
+  }*/
+
+  Firebase.begin(&config, &auth);
+  
+  /* Assign the callback function for the long running token generation task */
+  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
+  
+  Firebase.begin(&config, &auth);
+  Firebase.reconnectWiFi(true);
 }
 
 /*Sends a float value to connected firebase, assumes that connection to firebase is established*/
@@ -204,10 +212,10 @@ static bool getBoolFromFirebase(char* path){
     sendDataPrevMillis = millis();
     
      if (Firebase.RTDB.getBool(&fbdo, path)) {
-      if (fbdo.dataType() == "bool") {
-        boolValue = fbdo.boolData();
+      if (fbdo.dataType() == "boolean") {
+        boolValue = fbdo.boolData ();
       }
-    }
+    } 
     else {
       Serial.println(fbdo.errorReason());
     }
