@@ -2,16 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
 int * createMorseArray();
 int * msgToMorse(int * morseArray, char * msgArray);
-
 char * getMsg();
 char * toLowerCase(char * str);
 void * sendMsg(int * morseMsg, int morseMsgLength);
 int getMorseLength(char * str);
-
-
 int main(){
     int * morseArray;
     morseArray = createMorseArray();
