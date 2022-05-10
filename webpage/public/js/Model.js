@@ -4,6 +4,7 @@ class Model {
         this.currentUser = null;
         this.currentUsername = null;
         this.lightOn = false;
+        this.pendingMessage = false;
         this.morseText = "yeshello";
         this.dimmer = 10;
     }
@@ -62,6 +63,10 @@ class Model {
     setMorse(plaintext){
         this.morseText = plaintext;
         this.notifyObservers();
+    }
+
+    setPendingMessage(bool){
+        this.pendingMessage = bool;
     }
 
     setDimmer(input){

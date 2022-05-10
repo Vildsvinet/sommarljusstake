@@ -26,7 +26,8 @@ function ControlsView(props) {
                 <br/>
                 <br/>
                 <label>Text to morse:</label>
-                <input type="text" placeholder="Enter text" onInput={event=>props.onMorseText(event.target.value)}/>
+                <input type="text" placeholder="Enter text"
+                       onInput={event=> {props.onMorseText(event.target.value); props.setPendingMessage(true)}}/>
                 <button type={"submit"} onClick={()=> {props.setMorse()}}>Submit</button>
                 <br/>
                 <br/>

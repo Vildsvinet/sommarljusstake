@@ -10,9 +10,9 @@ function persistModel(model) {
         if(firebase.auth().currentUser)
             firebase.database().ref("users/" + firebase.auth().currentUser.uid).set({
                 lightStatus: model.lightOn,
+                morseStatus: model.pendingMessage,
                 morseText: model.morseText,
                 dimmer: model.dimmer
-
             })
     }
 
@@ -24,6 +24,7 @@ function persistModel(model) {
                     if(data.val()) {
                         model.setLight(data.val().lightStatus);
                         model.setMorse(data.val().morseText);
+                        model.setPendingMessage(data.val().morseStatus)
                         model.setDimmer(data.val().dimmer)
                     }
                 }
