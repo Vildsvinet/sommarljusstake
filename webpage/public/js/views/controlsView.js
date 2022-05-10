@@ -4,13 +4,25 @@ function ControlsView(props) {
         status = "ON";
     } else {status = "OFF"}
 
+    let sneaky;
+    if (props.lightStatus == true) {
+        sneaky = ""
+    } else sneaky = "hidden";
+
+    let reverseSneaky;
+    if (!(props.lightStatus == true)) {
+        reverseSneaky = ""
+    } else reverseSneaky = "hidden";
+
     return (
         <div>
             <center>
                 Status: {status}
                 <br/>
-                <button disabled={props.lightStatus} onClick = {() => props.setLight(true)}>ON</button>
-                <button disabled={!props.lightStatus} onClick = {() => props.setLight(false)}>OFF</button>
+                Turn
+                <button id={reverseSneaky} disabled={props.lightStatus} onClick = {() => props.setLight(true)}>ON</button>
+                <button id={sneaky} disabled={!props.lightStatus} onClick = {() => props.setLight(false)}>OFF</button>
+                the Sommarljusstake
                 <br/>
                 <br/>
                 <label>Text to morse:</label>
