@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ctype.h": "c",
+        "testmsgtomorseccode": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
