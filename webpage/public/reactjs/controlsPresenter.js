@@ -3,11 +3,13 @@ function ControlsPresenter(props){
     const [pendingMessage, setPendingMessage] = React.useState(props.model.pendingMessage);
     const [currentMorseText, setCurrentMorseText] = React.useState(props.model.morseText);
     const [dimmer, setDimmer]=React.useState(props.model.dimmer);
+    const [dimmerShow, setDimmerShow]=React.useState(props.model.dimmer);
 
     React.useEffect( function() {
         function obs() {
             setLightStatus(props.model.lightOn);
             setDimmer(props.model.dimmer);
+            setDimmerShow(props.model.dimmerShow);
             setPendingMessage(props.model.pendingMessage);
         }
 
@@ -30,6 +32,7 @@ function ControlsPresenter(props){
                 onMorseText = {text => setCurrentMorseText(text)}
                 setMorse = {()=> props.model.setMorse(currentMorseText)}
                 dimmer = {dimmer}
+                dimmerShow = {dimmerShow}
                 onMoveDimmer = {value => props.model.setDimmer(value)}
             />
         </React.Fragment>

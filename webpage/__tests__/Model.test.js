@@ -35,11 +35,16 @@ describe("Model interface", () => {
         expect(name.lightOn).toBe(false)
     });
 
+    test("defines dimmer()", () => {
+        expect(typeof name.dimmer).toBe("number");
+    })
+    test("Dimmer default", () => {
+        expect(name.dimmer).toBe(10)
+    });
+
     describe("setLight test", () => {
         const model1 = new model();
         const setLightSpy = jest.spyOn(model1, "setLight");
-
-        const trueRule = jest.fn(() => true);
 
         describe(".setLight", () => {
             test("defines a function", () => {
@@ -49,6 +54,11 @@ describe("Model interface", () => {
             test("sets lightStatus when called", () => {
                 expect(model1.setLight(true)).toBeUndefined(); // Can be replaced with model1.setLight(true)
                 expect(setLightSpy).toHaveBeenLastCalledWith(true);
+                expect(model1.lightOn).toBe(true)
+
+                expect(model1.setLight(false)).toBeUndefined();
+                expect(setLightSpy).toHaveBeenLastCalledWith(false);
+                expect(model1.lightOn).toBe(false)
 
                 setLightSpy.mockClear();
             });
@@ -58,15 +68,15 @@ describe("Model interface", () => {
     describe("setDimmer test", () => {
         const model1 = new model();
         const setDimmerSpy = jest.spyOn(model1, "setDimmer");
-
+        let input = 10;
         describe(".setDimmer", () => {
             test("defines a function", () => {
                 expect(typeof model1.setDimmer).toBe("function");
             });
-
             test("sets dimmer when called", () => {
-                expect(model1.setDimmer(10)).toBeUndefined();
+                expect(model1.setDimmer(input)).toBeUndefined();
                 expect(setDimmerSpy).toHaveBeenLastCalledWith(10);
+                expect(model1.dimmer).toBe(Math.floor(input/100 * 255))
 
                 setDimmerSpy.mockClear();
             });

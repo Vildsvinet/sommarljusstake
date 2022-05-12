@@ -8,6 +8,7 @@
         this.pendingMessage = false;
         this.morseText = "yeshello";
         this.dimmer = 10;
+        this.dimmerShow = 10;
     }
 
     setLight(input) {
@@ -76,6 +77,7 @@
     }
 
     setDimmer(input) {
+        this.dimmerShow = input;
         this.dimmer = Math.floor(input/100 * 255);
         this.notifyObservers();
     }

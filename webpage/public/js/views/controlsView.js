@@ -40,9 +40,9 @@ function ControlsView(props) {
                 <br/>
                 <br/>
                 <div className={"slidecontainer"}>
-                    <input type="range" min="5" max="100" value={props.dimmer} className="slider"
+                    <input type="range" min="5" max="100" value={props.dimmerShow} className="slider"
                            onInput={event => props.onMoveDimmer(event.target.value)}/>
-                    <p>Dimmer: {props.dimmer} percent</p>
+                    <p>Dimmer: {props.dimmerShow} percent</p>
                 </div>
                 <br/>
                 <button onClick={() => window.location.hash = "#home"}>Back to home</button>
