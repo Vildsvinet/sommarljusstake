@@ -40,4 +40,9 @@ describe("Model interface", () => {
         }
     )
 
+    test("morsetext type", () => {
+        expect(typeof name.morseText).toBe("string");
+        expect.stringMatching(/[0-9a-öA-Ö ]+$/);
+    })
+
 })
