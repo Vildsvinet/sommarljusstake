@@ -12,7 +12,7 @@ describe("Model interface", () => {
     })
     test("Observer empty list", () => {
         expect(name.observers).toEqual([])
-    })
+    });
 
     test("defines currentUser", () => {
         expect(typeof name.currentUser).toBe("object");
@@ -34,4 +34,10 @@ describe("Model interface", () => {
     test('Light off default', () => {
         expect(name.lightOn).toBe(false)
     });
+    //Tove below
+    test("defines pendingMessage", () => {
+            expect(typeof name.pendingMessage).toBe("boolean");
+        }
+    )
+
 })

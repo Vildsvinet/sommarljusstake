@@ -1,4 +1,5 @@
-class Model {
+// module.exports =
+    class Model {
     constructor(observers = []) {
         this.observers = [];
         this.currentUser = null;
@@ -23,7 +24,7 @@ class Model {
                 console.log(user);
                 this.currentUser = user;
                 this.notifyObservers();
-                window.location.hash="#controls";
+                window.location.hash = "#controls";
             })
             .catch((error) => {
                 let errorCode = error.code;
@@ -54,23 +55,28 @@ class Model {
     }
 
     notifyObservers() {
-        this.observers.forEach(cb =>
-        {setTimeout(()=>{
-            try{
-                cb()}catch (e) {console.log(e)}},0)})
+        this.observers.forEach(cb => {
+            setTimeout(() => {
+                try {
+                    cb()
+                } catch (e) {
+                    console.log(e)
+                }
+            }, 0)
+        })
     }
 
-    setMorse(plaintext){
+    setMorse(plaintext) {
         this.morseText = plaintext;
         this.notifyObservers();
     }
 
-    setPendingMessage(bool){
+    setPendingMessage(bool) {
         this.pendingMessage = bool;
     }
 
-    setDimmer(input){
-        this.dimmer = input;
+    setDimmer(input) {
+        this.dimmer = Math.floor(input/100 * 255);
         this.notifyObservers();
     }
 
