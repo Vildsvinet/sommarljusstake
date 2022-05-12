@@ -39,7 +39,7 @@ describe("Model interface", () => {
         expect(typeof name.dimmer).toBe("number");
     })
     test("Dimmer default", () => {
-        expect(name.dimmer).toBe(10)
+        expect(name.dimmer).toBe(25)
     });
 
     describe("setLight test", () => {
@@ -76,7 +76,8 @@ describe("Model interface", () => {
             test("sets dimmer when called", () => {
                 expect(model1.setDimmer(input)).toBeUndefined();
                 expect(setDimmerSpy).toHaveBeenLastCalledWith(10);
-                expect(model1.dimmer).toBe(Math.floor(input/100 * 255))
+                expect(model1.dimmer).toBe(Math.floor(input/100 * 255));
+                expect(model1.dimmerShow).toBe(input);
 
                 setDimmerSpy.mockClear();
             });

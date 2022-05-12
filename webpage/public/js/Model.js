@@ -7,7 +7,7 @@
         this.lightOn = false;
         this.pendingMessage = false;
         this.morseText = "yeshello";
-        this.dimmer = 10;
+        this.dimmer = 25;
         this.dimmerShow = 10;
     }
 
