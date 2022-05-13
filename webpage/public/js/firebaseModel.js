@@ -12,7 +12,8 @@ function persistModel(model) {
                 lightStatus: model.lightOn,
                 morseStatus: model.pendingMessage,
                 morseText: model.morseText,
-                dimmer: model.dimmer
+                dimmer: model.dimmer,
+                dimmerShow: model.dimmerShow
             })
     }
 
@@ -25,7 +26,7 @@ function persistModel(model) {
                         model.setLight(data.val().lightStatus);
                         model.setMorse(data.val().morseText);
                         model.setPendingMessage(data.val().morseStatus)
-                        model.setDimmer(data.val().dimmer)
+                        model.setDimmer(data.val().dimmerShow)
                     }
                 }
                 catch (e) {console.log(e)}
