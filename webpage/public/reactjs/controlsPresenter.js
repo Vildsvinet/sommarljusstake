@@ -3,7 +3,7 @@ function ControlsPresenter(props){
     const [pendingMessage, setPendingMessage] = React.useState(props.model.pendingMessage);
     const [currentMorseText, setCurrentMorseText] = React.useState(props.model.morseText);
     const [dimmer, setDimmer]=React.useState(props.model.dimmer);
-    const [dimmerShow, setDimmerShow]=React.useState(props.model.dimmer);
+    const [dimmerShow, setDimmerShow]=React.useState(props.model.dimmerShow);
 
     React.useEffect( function() {
         function obs() {
