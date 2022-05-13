@@ -21,14 +21,14 @@ function ControlsView(props) {
             <center>
                 Status: {status}
                 <br/>
-                Turn
-                <button id={reverseSneaky} disabled={props.lightStatus} onClick={() => props.setLight(true)}>ON</button>
-                <button id={sneaky} disabled={!props.lightStatus} onClick={() => props.setLight(false)}>OFF</button>
-                the Sommarljusstake
                 <br/>
+                <label className="switch">
+                    <input className="inputToggle" type="checkbox" checked={props.lightStatus} onChange={() => props.setLight(!props.lightStatus)}/>
+                    <span className="sliderToggle rounded"></span>
+                </label>
                 <br/>
                 <label>Text to morse:</label>
-                <input type="text" pattern="[0-9a-öA-Ö ]+$" placeholder="Enter text"
+                <input className="inputMorse" type="text" pattern="[0-9a-öA-Ö ]+$" placeholder="Enter text"
                        onInput={event => {
                            props.onMorseText(event.target.value);
                            props.setPendingMessage(true)
@@ -50,3 +50,11 @@ function ControlsView(props) {
         </div>
     )
 }
+
+/* Old button, in case toggle doesn't work as intended
+                Turn
+                <button id={reverseSneaky} disabled={props.lightStatus} onClick={() => props.setLight(true)}>ON</button>
+                <button id={sneaky} disabled={!props.lightStatus} onClick={() => props.setLight(false)}>OFF</button>
+                the Sommarljusstake
+                <br/>
+ */

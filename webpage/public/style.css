@@ -43,10 +43,6 @@ button{
     margin: 10px;
 }
 
-input{
-}
-
-
 button[disabled] {
     background-color: gray;
 }
@@ -58,6 +54,67 @@ button[disabled] {
 #hidden {
     display: none;
 }
+/* Toggle */
+.inputToggle {}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch inputToggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sliderToggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.sliderToggle:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.inputToggle:checked + .sliderToggle {
+    background-color: forestgreen;
+}
+
+.inputToggle:focus + .sliderToggle {
+    box-shadow: 0 0 1px forestgreen;
+}
+
+.inputToggle:checked + .sliderToggle:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.sliderToggle.rounded {
+    border-radius: 34px;
+}
+.sliderToggle.rounded:before {
+    border-radius: 50%;
+}
+/* End of Toggle */
 
 /* Dimmer */
 .slidecontainer {
@@ -68,7 +125,7 @@ button[disabled] {
     -webkit-appearance: none;
     width: 100%;
     height: 25px;
-    background: #d3d3d3;
+    background: #ccc;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -84,24 +141,23 @@ button[disabled] {
     appearance: none;
     width: 25px;
     height: 25px;
-    background: #04AA6D;
+    background: forestgreen;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: #04AA6D;
+    background: forestgreen;
     cursor: pointer;
 }
-
 /* End of dimmer */
 
-input:invalid {
+.inputMorse:invalid {
     background-color: orangered;
 }
 
-input:valid + span::before {
+.inputMorse:valid + span::before {
     content: '✓';
     color: green;
 }
