@@ -59,6 +59,7 @@ button[disabled] {
     display: none;
 }
 
+/* Dimmer */
 .slidecontainer {
     width: 20%;
 }
@@ -93,6 +94,8 @@ button[disabled] {
     background: #04AA6D;
     cursor: pointer;
 }
+
+/* End of dimmer */
 
 input:invalid {
     background-color: orangered;
