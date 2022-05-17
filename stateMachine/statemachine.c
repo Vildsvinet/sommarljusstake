@@ -7,7 +7,7 @@ enum states{
     LedsOn,
     LedsOff,
     Morse,
-    Dimmer
+    RandomBlink
 };
 static states State, NextState;
 void stateMachine(void){
@@ -24,6 +24,8 @@ while(1){
     bool morseStatus = getBoolFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/morseStatus");
     delay(1);
     string morseText = getStringFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/morseText");
+    delay(1);
+    bool blink = getBoolFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/blinkSent");
     delay(1);
     
     switch (State){
@@ -45,12 +47,14 @@ while(1){
             else if(morseStatus){ // Morse
                 NextState = Morse;
             }
+            else if(blink){
+                NextState = RandomBlink;
+            }
             else{ //still connected 
                 NextState = Connected;
             }
         break;
         case LedsOn:
-        // turn on the configured pins for the leds
         //go to light on function with dimmer value
         lightsOn(dimVal);
             if(WiFi.status() != WL_CONNECTED){ // connection lost
@@ -60,7 +64,10 @@ while(1){
                 NextState = Morse;
             }
             else if(!lightStatus){ //leds off button
-            NextState = LedsOff;
+                NextState = LedsOff;
+            }
+            else if(blink){
+                NextState = RandomBlink;
             }
             else{ //leds still on
                 NextState = LedsOn;
@@ -82,6 +89,20 @@ while(1){
         else if(!lightStatus){ 
             NextState= LedsOff;
         }
+        break;
+        case RandomBlink:
+        delay(1);
+        int timer = getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/blinkTimer");
+         //got to blink function
+        delay(1);   
+        sendBoolToFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/",false);    
+         
+        if (lightStatus){
+        NextState = LedsOn;
+        }
+        else if(!lightStatus){ 
+            NextState= LedsOff;
+        }  
         break;
     }
 }
