@@ -40,7 +40,6 @@
     const myModel = new Model();
     persistModel(myModel);
 
-    // Måste referera till användaren som inte laddads in vid det här laget...
     firebase.database().ref("Model").once("value").then(() =>
         ReactDOM.render(<App model = { myModel } />, document.getElementById("app"))
     );

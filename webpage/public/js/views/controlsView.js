@@ -6,16 +6,6 @@ function ControlsView(props) {
         status = "OFF"
     }
 
-    let sneaky;
-    if (props.lightStatus === true) {
-        sneaky = ""
-    } else sneaky = "hidden";
-
-    let reverseSneaky;
-    if (!(props.lightStatus === true)) {
-        reverseSneaky = ""
-    } else reverseSneaky = "hidden";
-
     return (
         <div>
             <center>
@@ -50,11 +40,3 @@ function ControlsView(props) {
         </div>
     )
 }
-
-/* Old button, in case toggle doesn't work as intended
-                Turn
-                <button id={reverseSneaky} disabled={props.lightStatus} onClick={() => props.setLight(true)}>ON</button>
-                <button id={sneaky} disabled={!props.lightStatus} onClick={() => props.setLight(false)}>OFF</button>
-                the Sommarljusstake
-                <br/>
- */

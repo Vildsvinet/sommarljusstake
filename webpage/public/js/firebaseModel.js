@@ -4,7 +4,6 @@ function persistModel(model) {
         setDataToFirebase();
     });
 
-    // TODO Stoppa overwrite till default settings som sker vid inloggning från ny enhet
     function setDataToFirebase() {
         if(loadingFromFirebase) return
         if(firebase.auth().currentUser)
