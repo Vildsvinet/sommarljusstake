@@ -1,5 +1,8 @@
 /*
-  @brief  This file contains functions for 
+  @brief  This file contains functions for connecting an ESP8266 Wifi module
+          to a firebase real time data base. The file also includes tests
+          for the functions and has a setup and loop function that runs 
+          the tests.
   
   @author Jonathan Gustafson
           jonathgu@kth.se
@@ -23,16 +26,16 @@
 #define WIFI_PASSWORD "1337420blaze"
 
 //User login for firebase
-#define USER_EMAIL "valued_customer@sommarljusstake.se"
-#define USER_PASSWORD "Secureasfuck123"
+//#define USER_EMAIL "valued_customer@sommarljusstake.se"
+//#define USER_PASSWORD "Secureasfuck123"
 
 //Firebase project API Key
-//#define API_KEY "AIzaSyBuq03f2lsm1lAWrJoGRAmbp9NEDP0Dx48"
-#define API_KEY "AIzaSyCvvoxNOc0hjikXHkk3GjeQPMNB8e9N7Uo"
+#define API_KEY "AIzaSyBuq03f2lsm1lAWrJoGRAmbp9NEDP0Dx48"
+//#define API_KEY "AIzaSyCvvoxNOc0hjikXHkk3GjeQPMNB8e9N7Uo"
 
 //RealTime Database URL */
-//#define DATABASE_URL "https://learningesp8266-1c56d-default-rtdb.europe-west1.firebasedatabase.app/" 
-#define DATABASE_URL "https://sommarljusstake-default-rtdb.europe-west1.firebasedatabase.app/"
+#define DATABASE_URL "https://learningesp8266-1c56d-default-rtdb.europe-west1.firebasedatabase.app/" 
+//#define DATABASE_URL "https://sommarljusstake-default-rtdb.europe-west1.firebasedatabase.app/"
 
 //Define Firebase Data object
 FirebaseData fbdo;
@@ -53,46 +56,64 @@ void setup(){
 
 void loop(){
 
-  Serial.println(getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/dimmer"));
-  delay(1000);
+  /*Serial.println(getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/dimmer"));
+  delay(10);
   Serial.println(getBoolFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/lightStatus"));
-  delay(1000);
+  delay(10);
   Serial.println(getStringFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/morseText"));
-  delay(1000);
+  delay(10);
   Serial.print("Firebase authentication: ");
   Serial.print(Firebase.authenticated());
   Serial.print("\n");
-  delay(1000);
-  /*sendAndGetFloatTest();
+  delay(1000);*/
+  
+  sendAndGetFloatTest();
   delay(1000);
   sendAndGetBoolTest();
   delay(1000);
   sendAndGetStringTest();
   delay(1000);
   sendAndGetIntTest();
-  delay(1000);*/
+  delay(1000);
   
 }
 
 /*Test for send and get float functions*/
 void sendAndGetFloatTest(){
-  sendFloatToFirebase("test/sendFloat", 0.69 + random(0,100));
-  Serial.println(getFloatFromFirebase("test/getFloat"));
+  sendFloatToFirebase("tests/testFloat", 0.69 + random(0,100));
+  delay(500);
+  Serial.println(getFloatFromFirebase("tests/testFloat"));
 }
 
 void sendAndGetBoolTest(){
-  sendBoolToFirebase("test/sendBool", true);
-  Serial.println(getBoolFromFirebase("test/getBool"));
+  sendBoolToFirebase("tests/sendBool", true);
+  Serial.println(getBoolFromFirebase("tests/testBool"));
+  delay(500);
+  sendBoolToFirebase("test/sendBool", false);
+  Serial.println(getBoolFromFirebase("tests/testBool"));
+  delay(500);
 }
 
 void sendAndGetStringTest(){
-  sendStringToFirebase("test/sendString", "ti ezalb");
-  Serial.println(getStringFromFirebase("test/getString"));
+  String letters[40] = {"a", "b", "c", "d", "e", "f",
+                        "g", "h", "i", "j", "k", "l", 
+                        "m", "n", "o", "p", "q", "r", 
+                        "s", "t", "u", "v", "w", "x", 
+                        "y", "z", "1", "2", "3", "4", 
+                        "5", "6", "7", "8", "9", "0"};
+  String randomString = "";
+  for(int i = 0; i < 10; i++){
+    randomString = randomString + letters[random(0,40)];
+  }
+  
+  sendStringToFirebase("tests/testString", randomString);
+  Serial.println(getStringFromFirebase("tests/testString"));
 }
 
 void sendAndGetIntTest(){
-  sendIntToFirebase("test/sendInt", 024);
-  Serial.println(getIntFromFirebase("test/getInt"));
+  sendIntToFirebase("tests/testInt", random(0, 100));
+  delay(500);
+  Serial.println(getIntFromFirebase("tests/testInt"));
 }
 
 void wifiSetup(){
@@ -117,8 +138,8 @@ void firebaseSetup(){
   config.database_url = DATABASE_URL;
 
   /* Assign email and password for login*/
-  auth.user.email = USER_EMAIL;
-  auth.user.password = USER_PASSWORD;
+//  auth.user.email = USER_EMAIL;
+//  auth.user.password = USER_PASSWORD;
   
   /* Sign up */
   /*if (Firebase.signUp(&config, &auth, "", "")){
@@ -140,7 +161,7 @@ void firebaseSetup(){
 
 /*Sends a float value to connected firebase, assumes that connection to firebase is established*/
 void sendFloatToFirebase(char* path, float value){
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
     //Write a float value to the database path
@@ -164,7 +185,7 @@ void sendFloatToFirebase(char* path, float value){
 static float getFloatFromFirebase(char* path){
   
   float floatValue = -1;
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
     
      if (Firebase.RTDB.getFloat(&fbdo, path)) {
@@ -184,7 +205,7 @@ static float getFloatFromFirebase(char* path){
 
 /*Sends a boolean value to connected firebase, assumes that connection to firebase is established*/
 void sendBoolToFirebase(char* path, bool value){
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
     //Write a booelean value to the database path
@@ -208,7 +229,7 @@ void sendBoolToFirebase(char* path, bool value){
 static bool getBoolFromFirebase(char* path){
   
   bool boolValue = false;
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
     
      if (Firebase.RTDB.getBool(&fbdo, path)) {
@@ -228,7 +249,7 @@ static bool getBoolFromFirebase(char* path){
 
 /*Sends a string value to connected firebase, assumes that connection to firebase is established*/
 void sendStringToFirebase(char* path, String value){
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
     //Write a string value to the database path
@@ -252,7 +273,7 @@ void sendStringToFirebase(char* path, String value){
 static String getStringFromFirebase(char* path){
   
   String stringValue = "-1";
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
     
      if (Firebase.RTDB.getString(&fbdo, path)) {
@@ -272,7 +293,7 @@ static String getStringFromFirebase(char* path){
 
 /*Sends an integer value to connected firebase, assumes that connection to firebase is established*/
 void sendIntToFirebase(char* path, int value){
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
     //Write a integer value to the database path
@@ -296,7 +317,7 @@ void sendIntToFirebase(char* path, int value){
 static int getIntFromFirebase(char* path){
   
   int intValue = -1;
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
     
      if (Firebase.RTDB.getInt(&fbdo, path)) {
