@@ -2200,3 +2200,5 @@ int UnityTestMatches(void)
 
 #endif /* UNITY_USE_COMMAND_LINE_ARGS */
 /*-----------------------------------------------*/
+void setUp (void) {} /* Is run before every test, put unit init calls here. */
+void tearDown (void) {} /* Is run after every test, put unit clean-up calls here. */

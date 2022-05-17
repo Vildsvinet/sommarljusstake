@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "msgToMorseCCode.c"
 #include <stdbool.h>
-#include <unity.h>
+#include "unity.h"
 void getMsgTest(void)
 {
     char * msgArray;
@@ -18,7 +18,7 @@ void toLowerCaseTest()
 }
 void getMorseLengthTest(){
     int length;
-    length = etMorseLength("ABCDEF");
+    length = getMorseLength("ABCDEF");
     TEST_ASSERT_TRUE(length == 30);
 }
 void msgToMorseTest(){
@@ -27,7 +27,7 @@ void msgToMorseTest(){
     morseArrayTable = createMorseArray();
     morseMsg = msgToMorse(morseArrayTable, "abcdef");
     static int asciiMorse[30] = {0,1,2,2,2,1,0,0,0,2,1,0,1,0,2,1,0,0,2,2,0,2,2,2,2,0,0,1,0,2};
-    TEST_ASSER_TRUE(morseMsg == asciiMorse);
+    TEST_ASSERT_TRUE(morseMsg == asciiMorse);
 }
 int main(void)
 {
