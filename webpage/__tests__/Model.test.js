@@ -75,7 +75,7 @@ describe("Model interface", () => {
             });
             test("sets dimmer when called", () => {
                 expect(model1.setDimmer(input)).toBeUndefined();
-                expect(setDimmerSpy).toHaveBeenLastCalledWith(10);
+                expect(setDimmerSpy).toHaveBeenLastCalledWith(input);
                 expect(model1.dimmer).toBe(Math.floor(input/100 * 255));
                 expect(model1.dimmerShow).toBe(input);
 
@@ -83,6 +83,30 @@ describe("Model interface", () => {
             });
         });
     });
+
+    describe("Observer", () => {
+        const model2 = new model();
+        const addObserverSpy = jest.spyOn(model2, "addObserver")
+        let callbackToPopulate = "First in que"
+        let callbackToTest = "SomethingToTest"
+        let expectedObservers = [callbackToPopulate, callbackToTest];
+
+        describe(".addObserver", () => {
+            test("define function", () => {
+                expect(typeof model2.addObserver).toBe("function");
+            });
+            test("tests observer", () => {
+                model2.addObserver(callbackToPopulate);
+                expect(model2.addObserver(callbackToTest)).toBeUndefined();
+                expect(addObserverSpy).toHaveBeenLastCalledWith(callbackToTest);
+                console.log(model2.observers)
+                expect(model2.observers).toStrictEqual(expectedObservers);
+
+                addObserverSpy.mockClear();
+            });
+
+        })
+    })
 
     //Tove below
     test("defines pendingMessage", () => {

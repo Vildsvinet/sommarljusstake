@@ -9,6 +9,9 @@
         this.morseText = "yeshello";
         this.dimmer = 25;
         this.dimmerShow = 10;
+        this.blinkTimer = 10;
+        this.blinkSent = false;
+        this.blinkOptions = [5, 15, 30, 60];
     }
 
     setLight(input) {
@@ -79,6 +82,13 @@
     setDimmer(input) {
         this.dimmerShow = input;
         this.dimmer = Math.floor(input/100 * 255);
+        this.notifyObservers();
+    }
+
+    setBlinkTimer(time) {
+        this.blinkTimer = parseInt(time);
+        this.blinkSent = true;
+        console.log(time);
         this.notifyObservers();
     }
 

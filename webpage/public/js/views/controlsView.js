@@ -35,6 +35,11 @@ function ControlsView(props) {
                     <p>Dimmer: {props.dimmerShow} percent</p>
                 </div>
                 <br/>
+                <select onChange = {event => props.setBlinkTimer(event.target.value)}>
+                    {props.blinkOptions.map(function(opt){ return <option key={opt}> {opt} </option>})}
+                </select>
+                <br/>
+                <br/>
                 <button onClick={() => window.location.hash = "#home"}>Back to home</button>
             </center>
         </div>

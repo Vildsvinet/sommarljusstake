@@ -12,7 +12,9 @@ function persistModel(model) {
                 morseStatus: model.pendingMessage,
                 morseText: model.morseText,
                 dimmer: model.dimmer,
-                dimmerShow: model.dimmerShow
+                dimmerShow: model.dimmerShow,
+                blinkTimer: model.blinkTimer,
+                blinkSent: model.blinkSent
             })
     }
 

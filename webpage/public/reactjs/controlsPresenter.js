@@ -4,6 +4,9 @@ function ControlsPresenter(props){
     const [currentMorseText, setCurrentMorseText] = React.useState(props.model.morseText);
     const [dimmer, setDimmer]=React.useState(props.model.dimmer);
     const [dimmerShow, setDimmerShow]=React.useState(props.model.dimmerShow);
+    const [blinkTimer, setBlinkTimer]=React.useState(props.model.blinkTimer);
+    const [blinkSent, setBlinkSent]=React.useState(props.model.blinkSent);
+    const [blinkOptions, setBlinkOptions]=React.useState(props.model.blinkOptions);
 
     React.useEffect( function() {
         function obs() {
@@ -11,6 +14,9 @@ function ControlsPresenter(props){
             setDimmer(props.model.dimmer);
             setDimmerShow(props.model.dimmerShow);
             setPendingMessage(props.model.pendingMessage);
+            setBlinkTimer(props.model.blinkTimer);
+            setBlinkSent(props.model.blinkSent);
+            setBlinkOptions(props.model.blinkOptions);
         }
 
         props.model.addObserver(obs);
@@ -34,6 +40,8 @@ function ControlsPresenter(props){
                 dimmer = {dimmer}
                 dimmerShow = {dimmerShow}
                 onMoveDimmer = {value => props.model.setDimmer(value)}
+                setBlinkTimer = {value => props.model.setBlinkTimer(value)}
+                blinkOptions = {blinkOptions}
             />
         </React.Fragment>
     )
