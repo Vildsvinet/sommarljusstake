@@ -95,7 +95,7 @@ while(1){
         int timer = getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/blinkTimer");
          //got to blink function
         delay(1);   
-        sendBoolToFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/",false);    
+        sendBoolToFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/"blinkSent,false);    
          
         if (lightStatus){
         NextState = LedsOn;
