@@ -10,16 +10,16 @@ int getDuration();
 int getRandomNumber();
 void turnOnLigths(int randomNumberDuration, int randomNumberLigth);
 
-int main(){
-//    srand ( time(NULL) );
-//    int number = getRandomNumber();
-//    printf("%d random s", number);
-
-   run();
-
-    return 0;
-}
-int run(){
+//int main(){
+////    srand ( time(NULL) );
+////    int number = getRandomNumber();
+////    printf("%d random s", number);
+//
+//   run();
+//
+//    return 0;
+//}
+int runRanLigths(){
     int duration;
     duration = getDuration();
     srand ( time(NULL) );
