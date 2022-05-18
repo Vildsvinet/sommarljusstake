@@ -23,10 +23,10 @@ function AboutView(props) {
 
                 <p>
                 <button onClick={() => window.location.hash = "#home"}>
-                    back to home
+                    Back to Home
                 </button><br/>
                 <button onClick={() => window.location.href = "mailto:info@sommarljusstake.se"}>
-                    contact
+                    Contact
                 </button>
                 </p>
             </center>

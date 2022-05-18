@@ -13,6 +13,4 @@ function LoginView(props) {
         <br/>
         <button onClick={() => window.location.hash = "#home"}>Back to home</button>
     </div>
-
-
 }

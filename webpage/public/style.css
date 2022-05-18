@@ -7,10 +7,8 @@ html{
 div{
     font-family: "Courier New", cursive;
     font-size: large;
-    /*margin: 5px;*/
     align-content: center;
     text-align: center;
-
 }
 
 h1{
@@ -22,10 +20,6 @@ img{
 }
 
 button{
-
-    /*width: 250px;*/
-    /*height: 50px;*/
-
     border-radius: 12px;
     border: black;
     background-color: indigo;
@@ -38,9 +32,11 @@ button{
     font-size: 20px;
     text-decoration: none;
     text-shadow: 1px 1px black;
-
-
     margin: 10px;
+}
+
+.smallButton{
+    font-size: 10px;
 }
 
 button[disabled] {
@@ -117,8 +113,9 @@ button[disabled] {
 /* End of Toggle */
 
 /* Dimmer */
-.slidecontainer {
+.slideContainer {
     width: 300px;
+    text-align: center;
 }
 
 .slider {
@@ -176,4 +173,18 @@ link{
 img {
     max-width: 90%;
     height: auto;
+}
+
+.overlayToggle{
+    position: fixed; /* Sit on top of the page content */
+    /*display: none; !* Hidden by default *!*/
+    width: 40%; /* Full width (cover the whole page) */
+    height: 40%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(100,100,100); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
 }

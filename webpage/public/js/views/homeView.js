@@ -12,7 +12,7 @@ function HomeView(props) {
     return <div>
         <img src={"midsommarljusstake.png"} alt={"logo"}/><br/>
 
-        <button id={sneaky} className="" onClick={() => window.location.hash = "#login"}>Sign in</button>
+        <button id={sneaky} className="" onClick={() => window.location.hash = "#login"}>Sign In</button>
         <button id={reverseSneaky} className="" onClick={() => window.location.hash = "#controls"}>Controls</button>
         <br/>
         <button id={reverseSneaky} className="" onClick={() => props.signOut()}>Sign out</button>
