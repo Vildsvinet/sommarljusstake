@@ -20,7 +20,7 @@ function persistModel(model) {
 
     function setDataFromFirebase() {
         if(firebase.auth().currentUser)
-            firebase.database().ref("users/" + firebase.auth().currentUser.uid).once("value", function(data){
+            firebase.database().ref("users/" + firebase.auth().currentUser.uid).on("value", function(data){
                 loadingFromFirebase= true;
                 try {
                     if(data.val()) {

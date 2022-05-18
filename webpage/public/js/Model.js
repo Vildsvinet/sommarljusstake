@@ -79,7 +79,8 @@
 
     setPendingMessage(bool) {
         this.pendingMessage = bool;
-        console.log("Setting morse bool")
+        console.log("Setting morse bool");
+        this.notifyObservers();
     }
 
     setDimmer(input) {
