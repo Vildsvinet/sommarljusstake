@@ -33,10 +33,10 @@ function ControlsView(props) {
                 <input className="inputMorse" type="text" pattern="[0-9a-öA-Ö ]+$" placeholder="Enter text"
                        onInput={event => {
                            props.onMorseText(event.target.value);
-                           props.setPendingMessage(true)
                        }}/>
                 <button className="smallButton" type={"submit"} onClick={() => {
                     props.setMorse();
+                    props.setPendingMessage(true);
                     console.log("Clicking submit")
                 }}>Submit
                 </button>

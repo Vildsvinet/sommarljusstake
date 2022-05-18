@@ -9,7 +9,7 @@
         this.morseText = "yeshello";
         this.dimmer = 25;
         this.dimmerShow = 10;
-        this.blinkTimer = 10;
+        this.blinkTimer = 5;
         this.blinkSent = false;
         this.blinkOptions = [5, 15, 30, 60];
     }
@@ -17,7 +17,9 @@
     setLight(input) {
         this.lightOn = input;
         this.setPendingMessage(false);
+        this.setBlinkSent(false);
         this.notifyObservers();
+        //console.log("Setting light to " + input)
     }
 
     signInEmail(email, password) {
@@ -73,13 +75,13 @@
 
     setMorse(plaintext) {
         this.morseText = plaintext;
-        console.log("Setting morse text")
+        //console.log("Setting morse text to " + plaintext)
         this.notifyObservers();
     }
 
     setPendingMessage(bool) {
         this.pendingMessage = bool;
-        console.log("Setting morse bool");
+        //console.log("Setting morse bool to " + bool);
         this.notifyObservers();
     }
 
@@ -88,14 +90,20 @@
         this.dimmer = Math.floor(input/100 * 255);
         this.setPendingMessage(false);
         this.notifyObservers();
+        //console.log("Setting dimmer to " + input)
     }
 
     setBlinkTimer(time) {
         this.blinkTimer = parseInt(time);
         this.blinkSent = true;
-        console.log(time);
+        //console.log("Set blink timer to " + time);
         this.setPendingMessage(false);
         this.notifyObservers();
+    }
+
+    setBlinkSent(bool) {
+        this.blinkSent = bool;
+        //console.log("Blink status bool set to " + bool)
     }
 
 }

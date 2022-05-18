@@ -5,7 +5,7 @@ function ControlsPresenter(props){
     const [dimmer, setDimmer]=React.useState(props.model.dimmer);
     const [dimmerShow, setDimmerShow]=React.useState(props.model.dimmerShow);
     const [blinkTimer, setBlinkTimer]=React.useState(props.model.blinkTimer);
-    const [blinkSent, setBlinkSent]=React.useState(props.model.blinkSent);
+    //const [blinkSent, setBlinkSent]=React.useState(props.model.blinkSent);
     const [blinkOptions, setBlinkOptions]=React.useState(props.model.blinkOptions);
 
     React.useEffect( function() {
@@ -15,7 +15,7 @@ function ControlsPresenter(props){
             setDimmerShow(props.model.dimmerShow);
             setPendingMessage(props.model.pendingMessage);
             setBlinkTimer(props.model.blinkTimer);
-            setBlinkSent(props.model.blinkSent);
+            //setBlinkSent(props.model.blinkSent);
             setBlinkOptions(props.model.blinkOptions);
         }
 
@@ -25,7 +25,7 @@ function ControlsPresenter(props){
             props.model.removeObserver(obs);
         }
     }, [props.model]
-    )
+    );
 
     return (
         <React.Fragment>
