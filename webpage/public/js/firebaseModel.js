@@ -27,6 +27,7 @@ function persistModel(model) {
                         model.setLight(data.val().lightStatus);
                         model.setMorse(data.val().morseText);
                         model.setDimmer(data.val().dimmerShow);
+                        model.setPendingMessage(data.val().morseStatus);
                     }
                 }
                 catch (e) {console.log(e)}

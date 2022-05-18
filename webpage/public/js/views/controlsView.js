@@ -36,7 +36,8 @@ function ControlsView(props) {
                            props.setPendingMessage(true)
                        }}/>
                 <button className="smallButton" type={"submit"} onClick={() => {
-                    props.setMorse()
+                    props.setMorse();
+                    console.log("Clicking submit")
                 }}>Submit
                 </button>
                 </div>

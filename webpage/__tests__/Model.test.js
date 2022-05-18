@@ -99,7 +99,6 @@ describe("Model interface", () => {
                 model2.addObserver(callbackToPopulate);
                 expect(model2.addObserver(callbackToTest)).toBeUndefined();
                 expect(addObserverSpy).toHaveBeenLastCalledWith(callbackToTest);
-                console.log(model2.observers)
                 expect(model2.observers).toStrictEqual(expectedObservers);
 
                 addObserverSpy.mockClear();

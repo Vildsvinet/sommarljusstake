@@ -16,6 +16,7 @@
 
     setLight(input) {
         this.lightOn = input;
+        this.setPendingMessage(false);
         this.notifyObservers();
     }
 
@@ -72,16 +73,19 @@
 
     setMorse(plaintext) {
         this.morseText = plaintext;
+        console.log("Setting morse text")
         this.notifyObservers();
     }
 
     setPendingMessage(bool) {
         this.pendingMessage = bool;
+        console.log("Setting morse bool")
     }
 
     setDimmer(input) {
         this.dimmerShow = input;
         this.dimmer = Math.floor(input/100 * 255);
+        this.setPendingMessage(false);
         this.notifyObservers();
     }
 
@@ -89,6 +93,7 @@
         this.blinkTimer = parseInt(time);
         this.blinkSent = true;
         console.log(time);
+        this.setPendingMessage(false);
         this.notifyObservers();
     }
 

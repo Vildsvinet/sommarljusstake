@@ -32,7 +32,7 @@ function ControlsPresenter(props){
             <ControlsView
                 lightStatus = {lightStatus}
                 setLight = {x => props.model.setLight(x)}
-                setPendingMessage = {bool => props.model.setPendingMessage(bool)}
+                setPendingMessage = {(b) => props.model.setPendingMessage(b)}
                 pendingMessage = {pendingMessage}
                 morseText = {currentMorseText}
                 onMorseText = {text => setCurrentMorseText(text)}
