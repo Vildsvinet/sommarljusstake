@@ -141,6 +141,10 @@ void firebaseSetup(){
   /* Assign the RealTime Database URL*/
   config.database_url = DATABASE_URL;
 
+  /* Assign email and password for login*/
+  auth.user.email = USER_EMAIL;
+  auth.user.password = USER_PASSWORD;
+
   Firebase.begin(&config, &auth);
   
   /* Assign the callback function for the long running token generation task */
