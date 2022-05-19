@@ -69,7 +69,7 @@ function ControlsView(props) {
                 <br/>
                 <div>
                     {/*<button onClick={() => window.location.hash = "#explanations"}>Explanations</button><br/>*/}
-                    <button>Explanations</button><br/>
+                    {/*<button>Explanations</button><br/>*/}
                     <button onClick={() => window.location.hash = "#home"}>Back to Home</button>
                 </div>
             </center>
