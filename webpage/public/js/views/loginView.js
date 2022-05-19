@@ -1,5 +1,6 @@
 function LoginView(props) {
     return <div>
+        <br/>
         <form>
         <input type="text" placeholder="E-mail" onInput={event => props.onEmailText(event.target.value)} required/>
         <br/>
@@ -9,8 +10,8 @@ function LoginView(props) {
             <br/>
         <button className="" onClick={() => {
             props.loginCurrentUser()
-        }} type="submit">Sign in</button>
+        }} type="submit">Sign In</button>
         <br/>
-        <button onClick={() => window.location.hash = "#home"}>Back to home</button>
+        <button onClick={() => window.location.hash = "#home"}>Back to Home</button>
     </div>
 }
