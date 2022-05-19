@@ -26,25 +26,31 @@
 #define WIFI_PASSWORD "1337420blaze"
 
 //User login for firebase
-//#define USER_EMAIL "valued_customer@sommarljusstake.se"
-//#define USER_PASSWORD "Secureasfuck123"
+#define USER_EMAIL "valued_customer@sommarljusstake.se"
+#define USER_PASSWORD "Secureasfuck123"
 
 //Firebase project API Key
-#define API_KEY "AIzaSyBuq03f2lsm1lAWrJoGRAmbp9NEDP0Dx48"
-//#define API_KEY "AIzaSyCvvoxNOc0hjikXHkk3GjeQPMNB8e9N7Uo"
+#define API_KEY "AIzaSyCvvoxNOc0hjikXHkk3GjeQPMNB8e9N7Uo"
 
-//RealTime Database URL */
-#define DATABASE_URL "https://learningesp8266-1c56d-default-rtdb.europe-west1.firebasedatabase.app/" 
-//#define DATABASE_URL "https://sommarljusstake-default-rtdb.europe-west1.firebasedatabase.app/"
+//RealTime Database URL
+#define DATABASE_URL "https://sommarljusstake-default-rtdb.europe-west1.firebasedatabase.app/"
 
 //Define Firebase Data object
 FirebaseData fbdo;
-
+//Define Firebase Authentication object
 FirebaseAuth auth;
+//Define Firebse Configuration object
 FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
 
+/* 
+  -Setup: Starts communication to arduino with baud-rate:115200
+
+  -Connects to wifi
+
+  -Connects to firebase
+*/
 void setup(){
   
   Serial.begin(115200);
@@ -54,28 +60,16 @@ void setup(){
   firebaseSetup();
 }
 
+/* Main program: Running tests */
 void loop(){
-
-  /*Serial.println(getIntFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/dimmer"));
-  delay(10);
-  Serial.println(getBoolFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/lightStatus"));
-  delay(10);
-  Serial.println(getStringFromFirebase("users/xfgWcU9o3decIkhbWSLkaU5acIl1/morseText"));
-  delay(10);
-  Serial.print("Firebase authentication: ");
-  Serial.print(Firebase.authenticated());
-  Serial.print("\n");
-  delay(1000);*/
-  
-  sendAndGetFloatTest();
+  sendAndGetFloatTest();  //testing with Floats
   delay(1000);
-  sendAndGetBoolTest();
+  sendAndGetBoolTest();   //testing with Boolean
   delay(1000);
-  sendAndGetStringTest();
+  sendAndGetStringTest(); //testing with Strings
   delay(1000);
-  sendAndGetIntTest();
+  sendAndGetIntTest();    //testing with Integers
   delay(1000);
-  
 }
 
 /*Test for send and get float functions*/
@@ -85,6 +79,7 @@ void sendAndGetFloatTest(){
   Serial.println(getFloatFromFirebase("tests/testFloat"));
 }
 
+/*Test for send and get bool functions*/
 void sendAndGetBoolTest(){
   sendBoolToFirebase("tests/sendBool", true);
   Serial.println(getBoolFromFirebase("tests/testBool"));
@@ -94,6 +89,7 @@ void sendAndGetBoolTest(){
   delay(500);
 }
 
+/*Test for send and get string functions*/
 void sendAndGetStringTest(){
   String letters[40] = {"a", "b", "c", "d", "e", "f",
                         "g", "h", "i", "j", "k", "l", 
@@ -101,6 +97,7 @@ void sendAndGetStringTest(){
                         "s", "t", "u", "v", "w", "x", 
                         "y", "z", "1", "2", "3", "4", 
                         "5", "6", "7", "8", "9", "0"};
+                        
   String randomString = "";
   for(int i = 0; i < 10; i++){
     randomString = randomString + letters[random(0,40)];
@@ -110,12 +107,14 @@ void sendAndGetStringTest(){
   Serial.println(getStringFromFirebase("tests/testString"));
 }
 
+/*Test for send and get int functions*/
 void sendAndGetIntTest(){
   sendIntToFirebase("tests/testInt", random(0, 100));
   delay(500);
   Serial.println(getIntFromFirebase("tests/testInt"));
 }
 
+/*Connects arduino to given SSID and Password*/
 void wifiSetup(){
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to Wi-Fi");
@@ -130,25 +129,17 @@ void wifiSetup(){
   Serial.println();
 }
 
+/*
+  Connects the arduino to given firebase using given authentication
+
+  Assumes the arduino has network connection
+*/
 void firebaseSetup(){
   /* Assign api key*/
   config.api_key = API_KEY;
 
   /* Assign the RealTime Database URL*/
   config.database_url = DATABASE_URL;
-
-  /* Assign email and password for login*/
-//  auth.user.email = USER_EMAIL;
-//  auth.user.password = USER_PASSWORD;
-  
-  /* Sign up */
-  /*if (Firebase.signUp(&config, &auth, "", "")){
-    Serial.println("Connected to firebase");
-    signupOK = true;
-  }
-  else{
-    Serial.printf("%s\n", config.signer.signupError.message.c_str());
-  }*/
 
   Firebase.begin(&config, &auth);
   
