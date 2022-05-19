@@ -5,7 +5,6 @@ function HomePresenter(props){
         function obs() {
             setCurrentUser(props.model.currentUser);
         }
-
         props.model.addObserver(obs);
 
         return function() {
@@ -19,5 +18,4 @@ function HomePresenter(props){
             signOut = {() => props.model.signOut()}
         />
     </React.Fragment>
-
 }

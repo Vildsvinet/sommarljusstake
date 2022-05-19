@@ -4,6 +4,15 @@ function persistModel(model) {
         setDataToFirebase();
     });
 
+    firebase.auth().onAuthStateChanged((user) => {
+        if(user) {
+            model.currentUser = firebase.auth().currentUser;
+            setDataFromFirebase();
+        } else  {
+            console.log("No user logged in");
+        }
+    });
+
     function setDataToFirebase() {
         if(loadingFromFirebase) return
         if(firebase.auth().currentUser)
@@ -34,15 +43,5 @@ function persistModel(model) {
             });
         else console.log("Can't load UID")
     }
-
-    firebase.auth().onAuthStateChanged((user) => {
-        if(user) {
-            model.currentUser = firebase.auth().currentUser;
-            setDataFromFirebase();
-
-        } else  {
-            console.log("No user logged in");
-        }
-    });
 
 }

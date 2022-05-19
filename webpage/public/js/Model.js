@@ -74,6 +74,7 @@
     }
 
     setMorse(plaintext) {
+        this.setBlinkSent(false);
         this.morseText = plaintext;
         //console.log("Setting morse text to " + plaintext)
         this.notifyObservers();
@@ -86,6 +87,7 @@
     }
 
     setDimmer(input) {
+        this.setBlinkSent(false);
         this.dimmerShow = input;
         this.dimmer = Math.floor(input/100 * 255);
         this.setPendingMessage(false);
