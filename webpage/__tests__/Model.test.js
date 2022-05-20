@@ -100,10 +100,8 @@ describe("Model interface", () => {
                 expect(model2.addObserver(callbackToTest)).toBeUndefined();
                 expect(addObserverSpy).toHaveBeenLastCalledWith(callbackToTest);
                 expect(model2.observers).toStrictEqual(expectedObservers);
-
                 addObserverSpy.mockClear();
             });
-
         })
     })
 

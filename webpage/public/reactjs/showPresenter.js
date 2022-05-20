@@ -19,5 +19,4 @@ function Show(props) {
     }*/
     // Mountar om, såsom man förväntar sig att det ska fungera!
     return hashState !== props.hash ? "" : props.children;
-
 }
