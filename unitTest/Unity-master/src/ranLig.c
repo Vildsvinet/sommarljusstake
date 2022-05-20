@@ -1,17 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
 #include <time.h>
 #include <unistd.h>
 int run();
 int getDuration();
 int getRandomNumber();
 void turnOnLigths(int randomNumberDuration, int randomNumberLigth);
-//int main(){
-//   run();
-//    return 0;
-//}
 int runRanLigths()
 {
     int duration;

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "msgToMorseCCode.c"
-#include <stdbool.h>
 #include "unity.h"
 #include "ranLig.c"
 void getMsgTest(void)
@@ -27,7 +26,16 @@ void msgToMorseTest(){
     int * morseArrayTable;
     morseArrayTable = createMorseArray();
     morseMsg = msgToMorse(morseArrayTable, "abcdef");
-    static int asciiMorse[30] = {0,1,2,2,2,1,0,0,0,2,1,0,1,0,2,1,0,0,2,2,0,2,2,2,2,0,0,1,0,2};
+    for(int i = 0; i <= 25; i++) {
+       printf("%d ", morseMsg[i]);
+    }
+     static int asciiMorse[30] = {0,1,2,2,2,
+    1,0,0,0,2,
+    1,0,1,0,2,
+    1,0,0,2,2,
+    0,2,2,2,2,
+    0,0,1,0,2,
+    1,1,0,2,2};
     TEST_ASSERT_CHAR_ARRAY_WITHIN(1,asciiMorse,morseMsg,30);
 }
 void getDurationTest() {

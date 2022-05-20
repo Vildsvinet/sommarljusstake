@@ -56,7 +56,7 @@ char * getMsg(){  //This is a place holder depening on how we get msg
     char *msg = "ABCDEF";
     return msg;
 }
-char * toLowerCase(char * str){  //This is a place holder depening on how we get msg
+char * toLowerCase(char * str){
      size_t len = strlen(str);
     char *lower = calloc(len+1, sizeof(char));
     for (size_t i = 0; i < len; ++i) {
@@ -67,7 +67,7 @@ char * toLowerCase(char * str){  //This is a place holder depening on how we get
 int getMorseLength(char * str){  
     return 5 * strlen(str);;
 }
-int * msgToMorse(int * morseArray, char * str){  //place holder
+int * msgToMorse(int * morseArray, char * str){
     int hold;
     size_t len = strlen(str);
     char *morseMsg = calloc(len+1*5, sizeof(char));
@@ -88,7 +88,8 @@ int * msgToMorse(int * morseArray, char * str){  //place holder
             morseMsg[(i*5)+4] = morseArray[(hold - 97)*5 + 4];
         }
     }
-  return morseArray;  
+
+  return morseArray;
 }
 int * createMorseArray(){
     static int asciiMorse[37][5] = {

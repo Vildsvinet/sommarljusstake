@@ -91,7 +91,7 @@ int * msgToMorse(int * morseArray, char * str)
             morseMsg[(i*5)+4] = morseArray[(hold - 97)*5 + 4];
         }
     }
-  return morseArray;  
+  return morseMsg;
 }
 int * createMorseArray()
 {
